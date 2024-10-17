@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>À Propos</h1>
+            <p>
+                Bienvenue sur Reda Cavalier ! Nous sommes spécialisée dans l'organisation d'activités équestres et d'aventures en plein air. Que vous soyez passionné par l'équitation ou que vous cherchiez à vivre des moments inoubliables en pleine nature, nous offrons une gamme d'expériences uniques adaptées à vos envies.
+            </p>
+            <p>
+                Notre mission est de fournir des services de haute qualité à nos clients tout en assurant une expérience mémorable et personnalisée. Que vous souhaitiez participer à une balade à cheval, à un pique-nique en plein air, ou à d'autres activités, notre équipe dévouée est là pour vous garantir les meilleures expériences en toute sécurité.
+            </p>
+            <h2>Notre Histoire</h2>
+            <p>
+                Fondée avec une passion pour les chevaux et la nature, Reda Cavalier a vu le jour à Essaouira, Maroc, avec pour objectif de créer un espace où les amoureux de l'aventure peuvent découvrir la beauté exceptionnelle de cette région côtière. À travers nos activités, nous offrons à nos clients des moments uniques de détente et de découverte, tout en explorant des paysages magnifiques. Depuis notre création, nous nous engageons à offrir des services authentiques, basés sur des valeurs fortes et un profond respect de la nature.
+            </p>
+            <h2>Nos Valeurs</h2>
+            <ul>  
+                <li>Professionnalisme : Nous nous engageons à offrir un service irréprochable, avec une attention aux détails qui fait toute la différence, que ce soit pour les balades à cheval, les randonnées ou les séances photo.
+                </li>
+                <li>Respect de l'environnement : Nous croyons fermement à la préservation de la nature. À travers nos activités, nous veillons à minimiser notre impact environnemental et à promouvoir un tourisme responsable à Essaouira.
+                </li>
+                <li>Sécurité et bien-être des clients : Votre sécurité est notre priorité absolue. Nous mettons tout en œuvre pour que vos activités, qu'il s'agisse de randonnées à cheval ou de pique-niques, se déroulent dans des conditions optimales.
+                </li>
+                <li>Qualité des services :Nous nous efforçons de fournir des services de haute qualité, adaptés aux attentes de chaque client, qu'il s'agisse d'une balade à cheval ou d'une séance photo.
+                </li>
+            </ul>
+            <h2>Rejoignez-nous pour vivre des moments exceptionnels avec nos chevaux et explorez la beauté de la nature à travers des aventures inoubliables à Essaouira !</h2>
+            <a class="btn inverse" href="{% url 'reservations:all_offers'  %}">Réserver maintenant</a>
+        </div>
+        <div class="col-md-6">
+            <!-- Ajouter une image avec un style moderne -->
+            <img src="{% static 'images/logo.png' %}" alt="Image À Propos" class="img-fluid rounded">
+        </div>
+    </div>
+   
+</div>
+{% endblock %}

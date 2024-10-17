@@ -1,0 +1,256 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block title %}REDA CAVALIER{% endblock %}
+{% block content %}
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="content three_quarter first"> 
+      <!-- ################################################################################################ -->
+      <h1> - {{ offer.name }}</h1>
+      <img class="imgl borderedbox inspace-5" style="max-height:400px;"src="{{ offer.image.url }}" alt="{{ offer.name }}">
+      <p>{{ offer.description }}</p>
+      
+      <div id="comments">
+        <h2>Comments</h2>
+        <ul>
+          <section id="price-list">
+            <header class="heading">Liste de Prix pour {{ offre.name }}</header>
+            <p>Photos et vidéos sont incluses dans le prix</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Activité</th>
+                  <th>Prix (€)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for option in offer.options_prix.all %}
+                <tr>
+                  <td>{{ option.description }}</td>
+                  <td>{{ option.price }} €</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </section>
+        </ul>
+        <form method="POST" class="container mt-4">
+          {% csrf_token %}
+      
+          <!-- Informations du client -->
+          <div class="mb-4">
+              <h3>Informations du client</h3>
+      
+              <!-- Row for Prénom and Nom -->
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group mb-3">
+                          <label for="{{ client_form.Prénom.id_for_label }}" class="form-label">{{ client_form.Prénom.label }}</label>
+                          {{ client_form.Prénom }}
+                          {% if client_form.Prénom.help_text %}
+                          <small class="form-text text-muted">{{ client_form.Prénom.help_text }}</small>
+                          {% endif %}
+                          {% if client_form.Prénom.errors %}
+                          <div class="text-danger">{{ client_form.Prénom.errors }}</div>
+                          {% endif %}
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group mb-3">
+                          <label for="{{ client_form.name.id_for_label }}" class="form-label">{{ client_form.name.label }}</label>
+                          {{ client_form.name }}
+                          {% if client_form.name.help_text %}
+                          <small class="form-text text-muted">{{ client_form.name.help_text }}</small>
+                          {% endif %}
+                          {% if client_form.name.errors %}
+                          <div class="text-danger">{{ client_form.name.errors }}</div>
+                          {% endif %}
+                      </div>
+                  </div>
+              </div>
+               <!-- Champ Email -->
+               <div class="form-group mb-3">
+                  <label for="{{ client_form.email.id_for_label }}" class="form-label">{{ client_form.email.label }}</label>
+                  {{ client_form.email }}
+                  {% if client_form.email.help_text %}
+                  <small class="form-text text-muted">{{ client_form.email.help_text }}</small>
+                  {% endif %}
+                  {% if client_form.email.errors %}
+                  <div class="text-danger">{{ client_form.email.errors }}</div>
+                  {% endif %}
+               </div>
+    
+            <!-- Champ Adresse -->
+            <div class="form-group mb-3">
+                <label for="{{ client_form.adresse.id_for_label }}" class="form-label">{{ client_form.adresse.label }}</label>
+                {{ client_form.adresse }}
+                {% if client_form.adresse.help_text %}
+                <small class="form-text text-muted">{{ client_form.adresse.help_text }}</small>
+                {% endif %}
+                {% if client_form.adresse.errors %}
+                <div class="text-danger">{{ client_form.adresse.errors }}</div>
+                {% endif %}
+            </div>
+              <!-- Row for Ville, Région, and Code Postal -->
+              <div class="row">
+                  <div class="col-md-4">
+                      <div class="form-group mb-3">
+                          <label for="{{ client_form.ville.id_for_label }}" class="form-label">{{ client_form.ville.label }}</label>
+                          {{ client_form.ville }}
+                          {% if client_form.ville.help_text %}
+                          <small class="form-text text-muted">{{ client_form.ville.help_text }}</small>
+                          {% endif %}
+                          {% if client_form.ville.errors %}
+                          <div class="text-danger">{{ client_form.ville.errors }}</div>
+                          {% endif %}
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group mb-3">
+                          <label for="{{ client_form.Region.id_for_label }}" class="form-label">{{ client_form.Region.label }}</label>
+                          {{ client_form.Region }}
+                          {% if client_form.Region.help_text %}
+                          <small class="form-text text-muted">{{ client_form.Region.help_text }}</small>
+                          {% endif %}
+                          {% if client_form.Region.errors %}
+                          <div class="text-danger">{{ client_form.Region.errors }}</div>
+                          {% endif %}
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group mb-3">
+                          <label for="{{ client_form.code_postal.id_for_label }}" class="form-label">{{ client_form.code_postal.label }}</label>
+                          {{ client_form.code_postal }}
+                          {% if client_form.code_postal.help_text %}
+                          <small class="form-text text-muted">{{ client_form.code_postal.help_text }}</small>
+                          {% endif %}
+                          {% if client_form.code_postal.errors %}
+                          <div class="text-danger">{{ client_form.code_postal.errors }}</div>
+                          {% endif %}
+                      </div>
+                  </div>
+              </div>
+      
+             
+      
+              <!-- Champ Pays et Cin ou Passeport -->
+              <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="{{ client_form.pays.id_for_label }}" class="form-label">{{ client_form.pays.label }}</label>
+                        {{ client_form.pays }}
+                        {% if client_form.pays.help_text %}
+                        <small class="form-text text-muted">{{ client_form.pays.help_text }}</small>
+                        {% endif %}
+                        {% if client_form.pays.errors %}
+                        <div class="text-danger">{{ client_form.pays.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="{{ client_form.cin_npassport.id_for_label }}" class="form-label">{{ client_form.cin_npassport.label }}</label>
+                        {{ client_form.cin_npassport }}
+                        {% if client_form.cin_npassport.help_text %}
+                        <small class="form-text text-muted">{{ client_form.cin_npassport.help_text }}</small>
+                        {% endif %}
+                        {% if client_form.cin_npassport.errors %}
+                        <div class="text-danger">{{ client_form.cin_npassport.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+              </div>
+      
+              <!-- Champ Niveau d'équitation -->
+              <div class="form-group mb-3">
+                  <label for="{{ client_form.equitation_niv.id_for_label }}" class="form-label">{{ client_form.equitation_niv.label }}</label>
+                  {{ client_form.equitation_niv }}
+                  {% if client_form.equitation_niv.help_text %}
+                  <small class="form-text text-muted">{{ client_form.equitation_niv.help_text }}</small>
+                  {% endif %}
+                  {% if client_form.equitation_niv.errors %}
+                  <div class="text-danger">{{ client_form.equitation_niv.errors }}</div>
+                  {% endif %}
+              </div>
+      
+              <!-- Champ Assurance -->
+              <div class="form-group mb-3">
+                  <label for="{{ client_form.assurance.id_for_label }}" class="form-label">{{ client_form.assurance.label }}</label>
+                  {{ client_form.assurance }}
+                  {% if client_form.assurance.help_text %}
+                  <small class="form-text text-muted">{{ client_form.assurance.help_text }}</small>
+                  {% endif %}
+                  {% if client_form.assurance.errors %}
+                  <div class="text-danger">{{ client_form.assurance.errors }}</div>
+                  {% endif %}
+              </div>
+      
+              <!-- Champ Numéro d'assurance -->
+              <div class="form-group mb-3">
+                  <label for="{{ client_form.numero_assurance.id_for_label }}" class="form-label">{{ client_form.numero_assurance.label }}</label>
+                  {{ client_form.numero_assurance }}
+                  {% if client_form.numero_assurance.help_text %}
+                  <small class="form-text text-muted">{{ client_form.numero_assurance.help_text }}</small>
+                  {% endif %}
+                  {% if client_form.numero_assurance.errors %}
+                  <div class="text-danger">{{ client_form.numero_assurance.errors }}</div>
+                  {% endif %}
+              </div>
+      
+          </div>
+      
+          <!-- Détails de la réservation -->
+          <div class="mb-4">
+              <h3>Détails de la réservation</h3>
+              {% for field in reservation_form %}
+              <div class="form-group mb-3">
+                  <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                  {{ field }}
+                  {% if field.help_text %}
+                  <small class="form-text text-muted">{{ field.help_text }}</small>
+                  {% endif %}
+                  {% if field.errors %}
+                  <div class="text-danger">{{ field.errors }}</div>
+                  {% endif %}
+              </div>
+              {% endfor %}
+          </div>
+      
+          <!-- Bouton de soumission -->
+          <button type="submit" class="btn inverse">Réserver maintenant</button>
+      </form>
+      
+      
+      </div>
+      <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+   
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- Bottom Background Image Wrapper -->
+{% endblock %} 
+
+{% comment %} <h1>{{ offer.name }}</h1>
+<img src="{{ offer.image.url }}" alt="{{ offer.name }}">
+<p>{{ offer.description }}</p>
+<p>Prix : {{ offer.price }} MAD</p>
+
+<h2>Réservez cette activité</h2>
+
+{% endcomment %}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}REDA CAVALIER{% endblock %}
+{% block content %}
+<div id="pageintro" class="hoc clear"> 
+  <article>
+    <h3 class="heading">CHEVAUCHEZ AVEC NOUS EN TOUTE LIBERTÉ</h3>
+    <footer>
+      <ul class="nospace inline pushright">
+        <li><a class="btn inverse" href="">Réserver maintenant</a></li>
+      </ul>
+    </footer>
+  </article>
+</div>
+<div class="wrapper row3" style="background-color:#fff;">
+  <main class="hoc container clear"> 
+    <section id="introblocks">
+      <ul class="nospace group grid-3">
+        {% for offre in last_offres %}
+          <li class="one_third">
+            <figure>
+              <a class="imgover" href="{% url 'reservations:offer_detail' offer_id=offre.id %}">
+                <!-- Vérification de l'image pour éviter les images manquantes -->
+                {% if offre.image %}
+                  <img src="{{ offre.image.url }}" alt="{{ offre.name }}">
+                {% else %}
+                  <img src="path_to_default_image.jpg" alt="Image non disponible">
+                {% endif %}
+              </a>
+              <figcaption>
+                <a href="{% url 'reservations:offer_detail' offer_id=offre.id %}">{{ offre.name }}</a>
+                <p>{{ offre.description }}</p>
+                <p>{{ offre.price }}<i class="bi bi-currency-euro"></i></p>
+              </figcaption>
+            </figure>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+        <img src="{% static 'images/2.jpg' %}" alt="Image 1">
+    </div>
+    <div class="swiper-slide">
+        <img src="{% static 'images/4.jpg' %}" alt="Image 2">
+    </div>
+    <div class="swiper-slide">
+        <img src="{% static 'images/3.jpg' %}" alt="Image 3">
+    </div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+  <!-- Ajouter les points de pagination -->
+  <div class="swiper-pagination"></div>
+  </div>
+  <!-- Ajouter les boutons de navigation -->
+  
+</div>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper('.swiper-container', {
+    spaceBetween: 30,
+    centeredSlides: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+</script>
+{%endblock%}

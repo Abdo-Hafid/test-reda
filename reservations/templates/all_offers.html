@@ -1,0 +1,50 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block title %}REDA CAVALIER{% endblock %}
+{% block content %}
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+
+<div class="container my-5">
+    <div class="row">
+        {% for offre in offres %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm"style="background-color: #981b38;">
+                <img src="{{ offre.image.url }}" class="card-img-top" alt="{{ offre.name }}" style="max-height:200px; object-fit:cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ offre.name }}</h5>
+                    <p class="card-text">{{ offre.description|truncatewords:15 }}</p>
+                    <p class="card-text"style="color: #999;"><strong>{{ offre.price }} €</strong></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="{% url 'reservations:offer_detail' offre.id %}" class="btn inverse" >Réserver maintenant</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.select-offer').forEach(button => {
+        button.addEventListener('click', function() {
+            const offerId = this.dataset.offerId;
+            // Logique pour sélectionner l'offre
+            console.log('Offer selected:', offerId);
+        });
+    });
+</script>
+
+{% endblock %} 
+
+{% comment %} <h1>{{ offer.name }}</h1>
+<img src="{{ offer.image.url }}" alt="{{ offer.name }}">
+<p>{{ offer.description }}</p>
+<p>Prix : {{ offer.price }} MAD</p>
+
+<h2>Réservez cette activité</h2>
+
+{% endcomment %}
